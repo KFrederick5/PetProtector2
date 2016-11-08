@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(FIELD_NAME, newPet.getName());
         values.put(FIELD_DETAILS, newPet.getDetails());
         values.put(FIELD_PHONE, newPet.getPhone());
-        values.put(FIELD_IMAGE, newPet.getImage());
+        values.put(FIELD_IMAGE, newPet.getImage().toString());
 
         petDB.insert(DATABASE_TABLE, null, values);
 
@@ -66,7 +67,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<Pet> allPets = new ArrayList<>();
 
-        Cursor results = petDB.query(DATABASE_TABLE, null, null, null, null, null, null, null);
+        Cursor results = petDB.query(DATABASE_TABLE, new String[] {KEY_FIELD_ID, FIELD_NAME,
+        FIELD_DETAILS, FIELD_PHONE, FIELD_IMAGE}, null, null, null, null, null, null);
 
         if (results.moveToFirst()) {
             do {
@@ -74,14 +76,20 @@ public class DBHelper extends SQLiteOpenHelper {
                 String name = results.getString(1);
                 String details = results.getString(2);
                 String phone = results.getString(3);
-                String image = results.getString(4);
+                Uri image = Uri.parse(results.getString(4));
                 allPets.add(new Pet(id, name, details, phone, image));
             } while (results.moveToNext());
         }
 
         petDB.close();
-        results.close();
         return allPets;
+    }
+
+    public void deleteAllPets()
+    {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(DATABASE_TABLE, null, null);
+        database.close();
     }
 
 }

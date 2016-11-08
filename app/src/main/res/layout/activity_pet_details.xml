@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_pet_details"
     android:layout_width="match_parent"
@@ -9,6 +10,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.orangecoastcollege.cs273.kfrederick5.petprotector2.PetDetailsActivity">
+    tools:context="edu.orangecoastcollege.cs273.kfrederick5.petprotector2.PetDetailsActivity"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/none"
+        android:id="@+id/petImageView"
+        android:layout_weight="2"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/petNameTextView"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/petDetailsTextView"
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/petPhoneTextView"
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+</LinearLayout>

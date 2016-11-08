@@ -1,5 +1,7 @@
 package edu.orangecoastcollege.cs273.kfrederick5.petprotector2;
 
+import android.net.Uri;
+
 /**
  * Created by Link on 10/27/2016.
  */
@@ -10,12 +12,13 @@ public class Pet {
     private String mName;
     private String mDetails;
     private String mPhone;
-    private String mImage;
+    private Uri mImage;
 
-    public Pet() {
+    public Pet(String name, String details, String phone, Uri image) {
+        this(-1, name, details, phone, image);
     }
 
-    public Pet(int id, String name, String details, String phone, String image) {
+    public Pet(int id, String name, String details, String phone, Uri image) {
         mId = id;
         mName = name;
         mDetails = details;
@@ -51,11 +54,11 @@ public class Pet {
         mPhone = phone;
     }
 
-    public String getImage() {
+    public Uri getImage() {
         return mImage;
     }
 
-    public void setImage(String image) {
+    public void setImage(Uri image) {
         mImage = image;
     }
 
